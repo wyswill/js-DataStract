@@ -3,8 +3,11 @@ let list = [];
  * 线性表初始化
  * 
  */
-function init_list(list_size=10) {
+function init_list(list_size = 10) {
     list.length = list_size; //定义线性表长度
+    for (let i = 0; i < list.length; i++) {
+        list[i] = 0;
+    }
     console.log(`线性表长度定义为${list.length}`);
 }
 /**
