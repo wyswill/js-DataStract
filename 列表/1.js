@@ -17,6 +17,7 @@
     currPos（方法） 返回列表的当前位置
     moveTo（方法） 将当前位置移动到指定位置
  */
+console.log(`列表对象为List`);
 
 class List {
     constructor(list_Size = 10, ...values) {
@@ -35,6 +36,11 @@ class List {
         console.log(`列表的长度为${this.length}`);
     }
     changeLength() {
+
+        this.list = this.list.filter(x => {
+            return x !== undefined && x != null;
+        });
+
         this.length = this.list.length;
     }
     /**
@@ -49,9 +55,10 @@ class List {
             console.log(`下标超出长度`);
             return;
         }
-        for (let i = this.list.length - 1; i >= index; i--) {
-            this.list[i + 1] = this.list[i];
-        }
+
+        let data = this.list[index];
+        this.list.push(data);
+
         this.list[index] = value;
         this.changeLength();
         console.log(`插入下标为${index}的值为${value}`);
@@ -80,11 +87,9 @@ class List {
             console.log(`下标超出长度`);
             return;
         } else {
-            for (let i = index; i < this.list.length - 1; i++) {
-                this.list[i] = this.list[i + 1];
-            }
+            this.list[index] = undefined;
         }
-        this.list.length--;
+
         this.changeLength();
         console.log(`下标为${index}的元素已经删除`);
     }
@@ -120,11 +125,7 @@ class List {
             console.log(`列表不存在`);
             return;
         }
-        let str = '';
-        this.list.forEach(ele => {
-            str += ele;
-        });
-        return str;
+        return this.list.toString();
     }
     /**
      * front（方法） 将列表的当前位置设移动到第一个元素
@@ -139,7 +140,6 @@ class List {
             return;
         }
         let data = this.list[index];
-        this.remove(index);
         this.list.unshift(data);
         console.log(`下标为${index}的值已经移到第一个元素`);
     }
@@ -157,7 +157,7 @@ class List {
         }
         let data = this.list[index];
         this.remove(index);
-        this.list[this.length] = data;
+        this.list.push(data);
     }
     /**
      *  prev（方法） 将当前位置前移一位
@@ -227,4 +227,22 @@ class List {
         this.remove(pos);
         this.insert(index, data);
     }
+
+    test() {
+        let start = new Date().getTime();
+        for (let i = 0; i < 10000; i++) {
+            li.insert(0, i);
+        }
+        let end = new Date().getTime();
+        console.log(`耗时为${(end-start)/1000}秒`);
+    }
+    test_remove() {
+        let start = new Date().getTime();
+        for (let i = 0; i < li.list.length; i++) {
+            li.remove(i);
+        }
+        let end = new Date().getTime();
+        console.log(`耗时为${(end-start)/1000}秒`);
+    }
 }
+let li = new List();
