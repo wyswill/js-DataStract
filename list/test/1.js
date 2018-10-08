@@ -97,8 +97,9 @@ class List {
      * clear（方法） 清空列表中的所有元素
      */
     clear() {
+        delete this.list;
         this.list = [];
-        this.changeLength.length;
+        this.changeLength();
         console.log(`已经清空列表中的所有元素`);
     }
     /**
