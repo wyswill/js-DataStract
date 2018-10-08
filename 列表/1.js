@@ -228,7 +228,7 @@ class List {
         this.insert(index, data);
     }
 
-    test() {
+    test_insert() {
         let start = new Date().getTime();
         for (let i = 0; i < 10000; i++) {
             li.insert(0, i);
