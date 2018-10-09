@@ -46,9 +46,9 @@ function mulBase(num, base) {
     var s = new Stack();
     do {
         s.push(num % base);
-        num = Math.floor(num /= base);
+        num = Math.floor((num /= base));
     } while (num > 0);
-    var converted = "";
+    var converted = '';
     while (s.length() > 0) {
         converted += s.pop();
     }
@@ -70,3 +70,4 @@ function isPalindrome(word) {
     if (word == str) return true;
     else return false;
 }
+exports.Stack = new Stack();
