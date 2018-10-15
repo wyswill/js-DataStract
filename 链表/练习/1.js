@@ -6,7 +6,7 @@ class Node {
 }
 /**
  * 链表对象
- * 
+ * 单链表
  */
 class LinkedList {
     /**
@@ -49,13 +49,12 @@ class LinkedList {
         }
     }
     /**
-     * 
-     * @param {any} item 找到要删除的节点的前一个节点 
+     * 找到要删除的节点的前一个节点 
+     * @param {any} item 要删除的节点
      */
     findPrevious(item) {
         let currNode = this.head;
-        while (!(currNode.next == null) &&
-            (currNode.next.element != item)) {
+        while (!(currNode.next == null) && currNode.next.element != item) {
             currNode = currNode.next;
         }
         return currNode;
