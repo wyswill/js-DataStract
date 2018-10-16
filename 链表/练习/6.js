@@ -58,6 +58,13 @@ class LoopList {
         }
         return currNode;
     }
+    /**
+     * 杀死士兵
+     * @param {listObj} listObj 链表对象
+     * 
+     * @思路:使用递归，每次运算该方法的时候就从头结点开始向后循环两个结点。就得到了第三个结点。把该节点从链表对象中删除
+     * 然后如果链表的长度大于3的话将该对象再次传入该方法
+     */
     killMen(listObj) {
         let currNode = this.head;
         for (let i = 0; i < 3; i++) {
