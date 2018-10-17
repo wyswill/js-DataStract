@@ -78,3 +78,5 @@ class LoopList {
     }
 }
 let l = new LoopList();
+l.testInsert(l);
+l.killMen(l);

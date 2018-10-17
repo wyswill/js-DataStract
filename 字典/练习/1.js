@@ -5,7 +5,7 @@
 
 class Dictionary {
     constructor() {
-        this.datastore = new Array();
+        this.datastore = [];
     }
     /**
      * 添加数据
@@ -29,7 +29,7 @@ class Dictionary {
         for (let key in this.datastore) {
             if (this.datastore.hasOwnProperty(key)) {
                 let element = this.datastore[key];
-                console.log(element);
+                console.log(`${key}  ${element}`);
             }
         }
     }
@@ -45,4 +45,11 @@ class Dictionary {
             delete this.datastore[key];
         }
     }
+    sort() {
+        let temp = Object.keys(this.datastore).sort();
+        for (let key in temp) {
+            console.log(temp[key]);
+        }
+    }
 }
+exports.Dictionary = Dictionary;
