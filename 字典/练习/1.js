@@ -5,7 +5,7 @@
 
 class Dictionary {
     constructor() {
-        this.datastore = [];
+        this.datastore = {};
     }
     /**
      * 添加数据
