@@ -31,6 +31,6 @@ class HashTable {
         this.table[pos] = data;
     }
     get() {
-
+    
     }
 }
