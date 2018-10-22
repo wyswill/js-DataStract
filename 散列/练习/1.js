@@ -22,10 +22,9 @@ class HashTable {
         return parseInt(total);
     }
     showDistro() {
-        let temp = 0;
         this.table.forEach((ele, index) => {
             console.log(`${index}: ${ele}`);
-        })
+        });
     }
     put(data) {
         let pos = this.betterHash(data);
