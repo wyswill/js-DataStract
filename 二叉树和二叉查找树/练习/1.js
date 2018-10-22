@@ -1,5 +1,11 @@
 /**
- * 二叉树喝二叉查找树
+ * 二叉树和二叉查找树
+ * @author wyswill
+ * @version 0.1
+ * @class Node
+ * @param {any} data 节点数据
+ * @param {node} left 左叶子
+ * @param {node} right 右叶子
  */
 class Node {
     constructor(data, left, right) {
@@ -11,13 +17,18 @@ class Node {
         return this.data;
     }
 }
+/**
+ * @author wyswill
+ * @class bst
+ * @description 二叉树类
+ */
 class bst {
     constructor(data = null) {
         this.root = data;
     }
     insert(data) {
-        let n = new Node(data, null, null);//创建一个节点
-        if (this.root == null) this.root = n;//如果根节点为空的话，该节点就是根节点
+        let n = new Node(data, null, null); //创建一个节点
+        if (this.root == null) this.root = n; //如果根节点为空的话，该节点就是根节点
         else {
             let current = this.root,
                 parent;
@@ -29,8 +40,7 @@ class bst {
                         parent.left = n;
                         break;
                     }
-                }
-                else {
+                } else {
                     current = current.right;
                     if (current == null) {
                         parent.right = n;
@@ -68,9 +78,8 @@ class bst {
         }
     }
     /**
-  * 在二叉查找树上进行查找
- 
- 寻找最小值 */
+     * 在二叉查找树上进行查找寻找最小值
+     */
     findMin() {
         let current = this.root;
         while (current.left != null) {
@@ -78,7 +87,9 @@ class bst {
         }
         return current.show();
     }
-    // 找到最大值
+    /** 
+     * @description 找到最大值
+     */
     findMax() {
         let current = this.root;
         while (current.right != null) {
@@ -86,7 +97,10 @@ class bst {
         }
         return current.show();
     }
-    // 寻找特定值
+    /**
+     * @description 寻找特定值
+     * @param {any} value 要查找的值 
+     */
     findSome(value) {
         let current = this.root;
         while (current != null) {
@@ -101,13 +115,32 @@ class bst {
         return null;
     }
     /**
-     * 从二叉查找树上删除节点
+     * @description 移除数据
+     * @param {any} data 要移除的数据
      */
-    deletNode(node) {
-
+    remove(data) {
+        root = this.removeNode(this.root, data);
     }
+    /**
+     * @description 从二叉查找树上删除节点
+     * @param {node} node 要移除的节点
+     */
+    removeNode(node) {
+        if (node == null) return null;
+        if (data == node.data) {
+            // 没有子节点的节点
+            if (node.left == null && node.right == null) return null;
+            // 没有左子节点的节点
+            if (node.left == null) return node.right;
+            // 没有右子节点的节点
+            if (node.right == null) return node.left;
+            // 有两个子节点的节点
+            let tempNode = getSmoallest(node.right);
 
 
+            
+        }
+    }
 }
 
 let nums = new bst();
