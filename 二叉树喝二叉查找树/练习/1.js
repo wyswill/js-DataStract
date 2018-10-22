@@ -43,9 +43,10 @@ class bst {
     /**
      * 中序遍历
      * @param {ndoe} node 要查找的节点
+     * @description 查找过程不是在一个方法中进行的，是一个这个树的结构的方法树
      */
     inOrder(node) {
-        if (!(node == null)) {
+        if (node != null) {
             this.inOrder(node.left);
             console.log(node.show() + "");
             this.inOrder(node.right);
@@ -65,6 +66,17 @@ class bst {
             this.inOrder(node.right);
             console.log(node.show() + '');
         }
+    }
+    /**
+  * 在二叉查找树上进行查找
+  * (1) 查找给定值；
+  */
+    findMin() {
+        let current = this.root;
+        while (current.left != null) {
+            current = current.left;
+        }
+        return current.show();
     }
 }
 
