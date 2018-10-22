@@ -100,7 +100,14 @@ class bst {
         }
         return null;
     }
-    
+    /**
+     * 从二叉查找树上删除节点
+     */
+    deletNode(node) {
+
+    }
+
+
 }
 
 let nums = new bst();
