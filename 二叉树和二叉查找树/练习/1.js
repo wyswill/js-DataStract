@@ -119,14 +119,15 @@ class bst {
      * @param {any} data 要移除的数据
      */
     remove(data) {
-        root = this.removeNode(this.root, data);
+        this.root = this.removeNode(this.root, data);
     }
     /**
      * @description 从二叉查找树上删除节点
      * @param {node} node 要移除的节点
      */
-    removeNode(node) {
+    removeNode(node, data) {
         if (node == null) return null;
+        // 删除当前节点
         if (data == node.data) {
             // 没有子节点的节点
             if (node.left == null && node.right == null) return null;
@@ -135,14 +136,33 @@ class bst {
             // 没有右子节点的节点
             if (node.right == null) return node.left;
             // 有两个子节点的节点
-            let tempNode = getSmoallest(node.right);
-
-
-            
+            let tempNode = this.getSmoallest(node.right);
+            node.data = tempNode.data;
+            node.right = this.removeNode(node.right, tempNode.data);
+            return node;
+        } else if (data < node.data) { /* 删除左子节点 */
+            node.left = this.removeNode(node.left, data);
+            return node;
+        } else { /* 删除右子节点 */
+            node.right = this.removeNode(node.right, data);
+            return node;
         }
     }
+    /**
+     * @description 找到最小节点
+     * @param {node} node 要查询的节点
+     */
+    getSmoallest(node) {
+        let current = node;
+        while (current.left != null) {
+            current = current.left;
+        }
+        return current;
+    }
 }
-
+/**
+ *@description 前序遍历、中序遍历、后序遍历测试
+ */
 let nums = new bst();
 nums.insert(23);
 nums.insert(45);
