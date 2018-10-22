@@ -69,8 +69,8 @@ class bst {
     }
     /**
   * 在二叉查找树上进行查找
-  * (1) 查找给定值；
-  */
+ 
+ 寻找最小值 */
     findMin() {
         let current = this.root;
         while (current.left != null) {
@@ -78,6 +78,29 @@ class bst {
         }
         return current.show();
     }
+    // 找到最大值
+    findMax() {
+        let current = this.root;
+        while (current.right != null) {
+            current = current.right;
+        }
+        return current.show();
+    }
+    // 寻找特定值
+    findSome(value) {
+        let current = this.root;
+        while (current != null) {
+            if (current.data == value) {
+                return current;
+            } else if (value < current.data) {
+                current = current.left;
+            } else if (value > current.data) {
+                current = current.right;
+            }
+        }
+        return null;
+    }
+    
 }
 
 let nums = new bst();
