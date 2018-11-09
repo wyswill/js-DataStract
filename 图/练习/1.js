@@ -19,12 +19,22 @@ class Graph {
     }
     toString() {
         for (var i = 0; i < this.vertices; ++i) {
-            // console.log(i + "->");
+            console.log(i + "->");
             for (var j = 0; j < this.vertices; ++j) {
-                if (this.adj[i][j] != undefined) console.log(this.adj[i][j] + ' ');
+                if (this.adj[i][j] != undefined) console.log(this.adj[i][j] + ' ' + '\n');
             }
         }
     }
+
+    showAdj() {
+        for (let i = 0; i < this.adj.length; i++) {
+            for (let j = 0; j < this.adj[i].length; j++) {
+                console.log(j);
+            }
+            console.log('\n');
+        }
+    }
+
 }
 
 
