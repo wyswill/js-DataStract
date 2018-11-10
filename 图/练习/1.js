@@ -26,15 +26,33 @@ class Graph {
         }
     }
 
-    showAdj() {
-        for (let i = 0; i < this.adj.length; i++) {
-            for (let j = 0; j < this.adj[i].length; j++) {
-                console.log(j);
+    // showAdj() {
+    //     for (let i = 0; i < this.adj.length; i++) {
+    //         for (let j = 0; j < this.adj[i].length; j++) {
+    //             console.log(j);
+    //         }
+    //         console.log('\n');
+    //     }
+    // }
+    /* 广度优先 */
+    bfs(s) {
+        let queue = [];
+        this.marked[s] = true;
+        queue.push(s);//添加到队尾
+        while (queue.length > 0) {
+            let v = queue.shift();//从队首移除
+            if (v == undefined) {
+                console.log(`Visisted vertex:  ${v}`);
             }
-            console.log('\n');
+            for (let key in this.adj[v]) {
+                if (!this.marked[key]) {
+                    this.edgeTo[key] = v;
+                    this.marked[key] = true;
+                    queue.pop(key);
+                }
+            }
         }
     }
-
 }
 
 
