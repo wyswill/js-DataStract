@@ -18,26 +18,26 @@ class Graph {
         this.edges++;
     }
     toString() {
-        for (var i = 0; i < this.vertices; ++i) {
+        for (let i = 0; i < this.vertices; ++i) {
             console.log(i + "->");
-            for (var j = 0; j < this.vertices; ++j) {
+            for (let j = 0; j < this.vertices; ++j) {
                 if (this.adj[i][j] != undefined) console.log(this.adj[i][j] + ' ' + '\n');
             }
         }
     }
-
-    // showAdj() {
-    //     for (let i = 0; i < this.adj.length; i++) {
-    //         for (let j = 0; j < this.adj[i].length; j++) {
-    //             console.log(j);
-    //         }
-    //         console.log('\n');
-    //     }
-    // }
+    showGraph() {
+        for (let i = 0; i < this.vertices; ++i) {
+            console.log(i + " -> ");
+            for (let j = 0; j < this.vertices; ++j) {
+                if (this.adj[i][j] != undefined)
+                    console.log(this.add[i][j] + '  ');
+            }
+        }
+    }
     /* 广度优先 */
     bfs(s) {
-        let queue = [];
-        this.marked[s] = true;
+        let queue = [];//行
+        this.marked[s] = true;//标记
         queue.push(s);//添加到队尾
         while (queue.length > 0) {
             let v = queue.shift();//从队首移除
