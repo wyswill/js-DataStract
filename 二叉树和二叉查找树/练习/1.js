@@ -8,14 +8,14 @@
  * @param {node} right 右叶子
  */
 class Node {
-    constructor(data, left, right) {
-        this.data = data;
-        this.left = left;
-        this.right = right;
-    }
-    show() {
-        return this.data;
-    }
+  constructor(data, left, right) {
+    this.data = data;
+    this.left = left;
+    this.right = right;
+  }
+  show() {
+    return this.data;
+  }
 }
 /**
  * @author wyswill
@@ -23,142 +23,145 @@ class Node {
  * @description 二叉树类
  */
 class bst {
-    constructor(data = null) {
-        this.root = data;
-    }
-    insert(data) {
-        let n = new Node(data, null, null); //创建一个节点
-        if (this.root == null) this.root = n; //如果根节点为空的话，该节点就是根节点
-        else {
-            let current = this.root,
-                parent;
-            while (true) {
-                parent = current;
-                if (data < current.data) {
-                    current = current.left;
-                    if (current == null) {
-                        parent.left = n;
-                        break;
-                    }
-                } else {
-                    current = current.right;
-                    if (current == null) {
-                        parent.right = n;
-                        break;
-                    }
-                }
-            }
+  constructor(data = null) {
+    this.root = data;
+  }
+  insert(data) {
+    let n = new Node(data, null, null); //创建一个节点
+    if (this.root == null) this.root = n;
+    //如果根节点为空的话，该节点就是根节点
+    else {
+      let current = this.root,
+        parent;
+      while (true) {
+        parent = current;
+        if (data < current.data) {
+          current = current.left;
+          if (current == null) {
+            parent.left = n;
+            break;
+          }
+        } else {
+          current = current.right;
+          if (current == null) {
+            parent.right = n;
+            break;
+          }
         }
+      }
     }
-    /**
-     * @description 中序遍历
-     * @param {ndoe} node 要查找的节点
-     * @description 查找过程不是在一个方法中进行的，是一个这个树的结构的方法树
-     */
-    inOrder(node) {
-        if (node != null) {
-            this.inOrder(node.left);
-            console.log(node.show() + "");
-            this.inOrder(node.right);
-        }
+  }
+  /**
+   * @description 中序遍历
+   * @param {ndoe} node 要查找的节点
+   * @description 查找过程不是在一个方法中进行的，是一个这个树的结构的方法树
+   */
+  inOrder(node) {
+    if (node != null) {
+      this.inOrder(node.left);
+      console.log(node.show() + "");
+      this.inOrder(node.right);
     }
-    // 先序遍历
-    preOrder(node) {
-        if (node != null) {
-            console.log(node.show() + '');
-            this.inOrder(node.left);
-            this.inOrder(node.right);
-        }
+  }
+  // 先序遍历
+  preOrder(node) {
+    if (node != null) {
+      console.log(node.show() + "");
+      this.inOrder(node.left);
+      this.inOrder(node.right);
     }
-    postOrder(node) {
-        if (node != null) {
-            this.inOrder(node.left);
-            this.inOrder(node.right);
-            console.log(node.show() + '');
-        }
+  }
+  postOrder(node) {
+    if (node != null) {
+      this.inOrder(node.left);
+      this.inOrder(node.right);
+      console.log(node.show() + "");
     }
-    /**
-     * 在二叉查找树上进行查找寻找最小值
-     */
-    findMin() {
-        let current = this.root;
-        while (current.left != null) {
-            current = current.left;
-        }
-        return current.show();
+  }
+  /**
+   * 在二叉查找树上进行查找寻找最小值
+   */
+  findMin() {
+    let current = this.root;
+    while (current.left != null) {
+      current = current.left;
     }
-    /** 
-     * @description 找到最大值
-     */
-    findMax() {
-        let current = this.root;
-        while (current.right != null) {
-            current = current.right;
-        }
-        return current.show();
+    return current.show();
+  }
+  /**
+   * @description 找到最大值
+   */
+  findMax() {
+    let current = this.root;
+    while (current.right != null) {
+      current = current.right;
     }
-    /**
-     * @description 寻找特定值
-     * @param {any} value 要查找的值 
-     */
-    findSome(value) {
-        let current = this.root;
-        while (current != null) {
-            if (current.data == value) {
-                return current;
-            } else if (value < current.data) {
-                current = current.left;
-            } else if (value > current.data) {
-                current = current.right;
-            }
-        }
-        return null;
-    }
-    /**
-     * @description 移除数据
-     * @param {any} data 要移除的数据
-     */
-    remove(data) {
-        this.root = this.removeNode(this.root, data);
-    }
-    /**
-     * @description 从二叉查找树上删除节点
-     * @param {node} node 要移除的节点
-     */
-    removeNode(node, data) {
-        if (node == null) return null;
-        // 删除当前节点
-        if (data == node.data) {
-            // 没有子节点的节点
-            if (node.left == null && node.right == null) return null;
-            // 没有左子节点的节点
-            if (node.left == null) return node.right;
-            // 没有右子节点的节点
-            if (node.right == null) return node.left;
-            // 有两个子节点的节点
-            let tempNode = this.getSmoallest(node.right);
-            node.data = tempNode.data;
-            node.right = this.removeNode(node.right, tempNode.data);
-            return node;
-        } else if (data < node.data) { /* 删除左子节点 */
-            node.left = this.removeNode(node.left, data);
-            return node;
-        } else { /* 删除右子节点 */
-            node.right = this.removeNode(node.right, data);
-            return node;
-        }
-    }
-    /**
-     * @description 找到最小节点
-     * @param {node} node 要查询的节点
-     */
-    getSmoallest(node) {
-        let current = node;
-        while (current.left != null) {
-            current = current.left;
-        }
+    return current.show();
+  }
+  /**
+   * @description 寻找特定值
+   * @param {any} value 要查找的值
+   */
+  findSome(value) {
+    let current = this.root;
+    while (current != null) {
+      if (current.data == value) {
         return current;
+      } else if (value < current.data) {
+        current = current.left;
+      } else if (value > current.data) {
+        current = current.right;
+      }
     }
+    return null;
+  }
+  /**
+   * @description 移除数据
+   * @param {any} data 要移除的数据
+   */
+  remove(data) {
+    this.root = this.removeNode(this.root, data);
+  }
+  /**
+   * @description 从二叉查找树上删除节点
+   * @param {node} node 要移除的节点
+   */
+  removeNode(node, data) {
+    if (node == null) return null;
+    // 删除当前节点
+    if (data == node.data) {
+      // 没有子节点的节点
+      if (node.left == null && node.right == null) return null;
+      // 没有左子节点的节点
+      if (node.left == null) return node.right;
+      // 没有右子节点的节点
+      if (node.right == null) return node.left;
+      // 有两个子节点的节点
+      let tempNode = this.getSmoallest(node.right);
+      node.data = tempNode.data;
+      node.right = this.removeNode(node.right, tempNode.data);
+      return node;
+    } else if (data < node.data) {
+      /* 删除左子节点 */
+      node.left = this.removeNode(node.left, data);
+      return node;
+    } else {
+      /* 删除右子节点 */
+      node.right = this.removeNode(node.right, data);
+      return node;
+    }
+  }
+  /**
+   * @description 找到最小节点
+   * @param {node} node 要查询的节点
+   */
+  getSmoallest(node) {
+    let current = node;
+    while (current.left != null) {
+      current = current.left;
+    }
+    return current;
+  }
 }
 /**
  *@description 前序遍历、中序遍历、后序遍历测试
